@@ -5,3 +5,5 @@ vendor
 *_templ.txt
 tmp
 test_config
+db/postgres/sqlc
+public
