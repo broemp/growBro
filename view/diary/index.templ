@@ -1,0 +1,21 @@
+package diary
+
+import "github.com/broemp/cannaBro/view/layout"
+import db "github.com/broemp/cannaBro/db/postgres/sqlc"
+
+templ Index() {
+	@layout.Index(true) {
+		<div class="grid grid-cols-1">
+			@Posts([]db.Post{})
+		</div>
+	}
+}
+
+templ Posts(posts []db.Post) {
+	for _, post := range posts {
+		<div class="card">
+			<h2 class="card-title">{ post.Title }</h2>
+			{ post.Content }
+		</div>
+	}
+}

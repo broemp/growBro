@@ -1,0 +1,50 @@
+package components
+
+import "github.com/broemp/cannaBro/view"
+import "github.com/broemp/cannaBro/auth"
+
+templ Navigation() {
+<div class="navbar bg-base-100 border-b border-gray-700">
+  <div class="navbar-start">
+    <label for="my-drawer-2" class="drawer-button lg:hidden">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+          </svg>
+        </div>
+      </div>
+    </label>
+    <a class="btn btn-ghost text-xl" href="/">CannaBro</a>
+  </div>
+  <div class="navbar-end gap-2">
+    if auth.Enabled && view.AuthenticatedUser(ctx).LoggedIn {
+    <a href="/diary/new" class="btn">New Post</a>
+    <form method="POST" action="/logout"><button class="btn btn-primary" type="submit">Logout</button></form>
+    } else {
+    <a href="/login" class="btn btn-primary">Log In</a>
+    }
+  </div>
+</div>
+<div class="drawer lg:drawer-open">
+  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content h-auto w-full">
+    <div class=" flex flex-col items-center justify-center">
+      { children... }
+    </div>
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+      @NavigationLinks()
+    </ul>
+  </div>
+</div>
+}
+
+templ NavigationLinks() {
+<li><a href="/">Home</a></li>
+<li><a href="/diary">Diary</a></li>
+<li><a href="/sensors">Sensors</a></li>
+<li><a href="/settings">Settings</a></li>
+}

@@ -1,0 +1,33 @@
+package diary
+
+import "github.com/broemp/cannaBro/view/layout"
+
+templ NewDiaryEntrie() {
+	@layout.Index(true) {
+		<div class="grid grid-cols-1">
+			<h2 class="text-center text-4xl font-bold pb-2 pt-4 w-full">New Post</h2>
+			@NewDiaryForm(DiaryFormErrors{})
+		</div>
+	}
+}
+
+type DiaryFormErrors struct {
+	Title   string
+	Content string
+}
+
+templ NewDiaryForm(err DiaryFormErrors) {
+	<form class="grid grid-cols-1 gap-y-4" hx-post="/login" hx-swap="outerHTML">
+		<label class="input input-bordered flex items-center">
+			<input name="title" type="text" class="grow" placeholder="Title" value={ err.Title } required/>
+		</label>
+		<textarea
+			name="content"
+			type="text"
+			class="textarea textarea-bordered"
+			placeholder="Type Here"
+			value={ err.Content }
+			required
+		></textarea>
+	</form>
+}

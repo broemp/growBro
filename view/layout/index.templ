@@ -1,0 +1,30 @@
+package layout
+
+import "github.com/broemp/cannaBro/view/components"
+
+templ Index(nav bool) {
+	<!DOCTYPE html>
+	<html lang="en" data-theme="lemonade">
+		<head>
+			<title>CannaBro</title>
+			<link rel="icon" href="/public/favicon.svg"/>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="stylesheet" href="/public/styles.css"/>
+			<script src="/public/htmx.min.js" defer></script>
+		</head>
+		<body class="antialiased">
+			if nav {
+				@components.Navigation() {
+					<div class="children">
+						{ children... }
+					</div>
+				}
+			} else {
+				<div class="children">
+					{ children... }
+				</div>
+			}
+		</body>
+	</html>
+}

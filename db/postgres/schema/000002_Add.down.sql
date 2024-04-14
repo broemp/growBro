@@ -1,0 +1,2 @@
+ALTER TABLE "post" 
+DROP IF EXISTS title;

@@ -1,0 +1,7 @@
+node_modules
+vendor
+.env
+*_templ.go
+*_templ.txt
+tmp
+test_config
