@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/a-h/templ"
-	"github.com/broemp/cannaBro/models"
+	"github.com/broemp/growBro/models"
 )
 
 func render(w http.ResponseWriter, r *http.Request, comp templ.Component) error {

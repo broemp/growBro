@@ -1,11 +1,11 @@
 package diary
 
-import "github.com/broemp/cannaBro/view/layout"
+import "github.com/broemp/growBro/view/layout"
 
 templ NewDiaryEntrie() {
 	@layout.Index(true) {
-		<div class="grid grid-cols-1">
-			<h2 class="text-center text-4xl font-bold pb-2 pt-4 w-full">New Post</h2>
+		<h2 class="text-center text-4xl font-bold pb-2 pt-4 w-full">New Post</h2>
+		<div class="w-2/3">
 			@NewDiaryForm(DiaryFormErrors{})
 		</div>
 	}
@@ -17,7 +17,7 @@ type DiaryFormErrors struct {
 }
 
 templ NewDiaryForm(err DiaryFormErrors) {
-	<form class="grid grid-cols-1 gap-y-4" hx-post="/login" hx-swap="outerHTML">
+	<form class="grid grid-cols-1 gap-y-4" hx-post="/diary/new" hx-swap="outerHTML">
 		<label class="input input-bordered flex items-center">
 			<input name="title" type="text" class="grow" placeholder="Title" value={ err.Title } required/>
 		</label>
@@ -29,5 +29,7 @@ templ NewDiaryForm(err DiaryFormErrors) {
 			value={ err.Content }
 			required
 		></textarea>
+		<input name="images" accept="image/*" type="file" class="file-input file-input-bordered w-full"/>
+		<button type="button" type="submit" class="btn btn-primary">Submit</button>
 	</form>
 }

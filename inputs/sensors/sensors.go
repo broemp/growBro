@@ -1,7 +1,7 @@
 package sensors
 
 import (
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/config"
 	"github.com/spf13/viper"
 )
 

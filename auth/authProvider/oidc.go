@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/config"
 	"github.com/coreos/go-oidc/v3/oidc"
 	"golang.org/x/oauth2"
 )

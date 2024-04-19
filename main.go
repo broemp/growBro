@@ -3,12 +3,13 @@ package main
 import (
 	"embed"
 
-	"github.com/broemp/cannaBro/auth"
-	"github.com/broemp/cannaBro/config"
-	db "github.com/broemp/cannaBro/db/postgres/sqlc"
-	"github.com/broemp/cannaBro/logger"
-	"github.com/broemp/cannaBro/modules/session"
-	"github.com/broemp/cannaBro/server"
+	"github.com/broemp/growBro/auth"
+	"github.com/broemp/growBro/config"
+	db "github.com/broemp/growBro/db/postgres/sqlc"
+	"github.com/broemp/growBro/logger"
+	"github.com/broemp/growBro/server"
+	"github.com/broemp/growBro/session"
+	"github.com/broemp/growBro/videostream"
 )
 
 //go:embed public
@@ -23,5 +24,7 @@ func main() {
 	session.Init()
 	db.Init(schemaFS)
 	auth.Init()
+	println("Running")
+	go videostream.Init()
 	server.Start(publicFS)
 }

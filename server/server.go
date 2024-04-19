@@ -4,8 +4,8 @@ import (
 	"embed"
 	"net/http"
 
-	"github.com/broemp/cannaBro/config"
-	"github.com/broemp/cannaBro/server/handler"
+	"github.com/broemp/growBro/config"
+	"github.com/broemp/growBro/server/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"go.uber.org/zap"

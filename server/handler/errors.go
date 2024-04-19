@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/broemp/cannaBro/view/errorPages"
+	"github.com/broemp/growBro/view/errorPages"
 	"go.uber.org/zap"
 )
 

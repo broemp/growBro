@@ -1,3 +1,3 @@
-# CannaBro
+# GrowBro
 
 TODO: Write Readme

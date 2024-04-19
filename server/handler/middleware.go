@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/broemp/cannaBro/auth"
-	"github.com/broemp/cannaBro/models"
-	"github.com/broemp/cannaBro/modules/session"
+	"github.com/broemp/growBro/auth"
+	"github.com/broemp/growBro/models"
+	"github.com/broemp/growBro/session"
 )
 
 const (

@@ -3,7 +3,7 @@ package view
 import (
 	"context"
 
-	"github.com/broemp/cannaBro/models"
+	"github.com/broemp/growBro/models"
 )
 
 func AuthenticatedUser(ctx context.Context) models.AuthenticatedUser {

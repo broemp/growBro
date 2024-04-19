@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/broemp/cannaBro/auth"
-	"github.com/broemp/cannaBro/modules/session"
-	"github.com/broemp/cannaBro/view/login"
+	"github.com/broemp/growBro/auth"
+	"github.com/broemp/growBro/session"
+	"github.com/broemp/growBro/view/login"
 	"go.uber.org/zap"
 )
 
@@ -29,6 +29,7 @@ func HandleLoginForm(w http.ResponseWriter, r *http.Request) error {
 	}
 	zap.L().Info("Logged in User", zap.String("username", username), zap.String("ip", r.RemoteAddr))
 	setAuthCookie(w, r, token)
+
 	hxRedirect(w, r, "/")
 	return nil
 }

@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/broemp/cannaBro/config"
-	db "github.com/broemp/cannaBro/db/postgres/sqlc"
+	"github.com/broemp/growBro/config"
+	db "github.com/broemp/growBro/db/postgres/sqlc"
 	"github.com/jackc/pgx/v5/pgtype"
 	"golang.org/x/crypto/bcrypt"
 )

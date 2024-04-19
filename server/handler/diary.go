@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	db "github.com/broemp/cannaBro/db/postgres/sqlc"
-	"github.com/broemp/cannaBro/view/diary"
+	db "github.com/broemp/growBro/db/postgres/sqlc"
+	"github.com/broemp/growBro/view/diary"
 )
 
 func HandlePosts(w http.ResponseWriter, r *http.Request) error {

@@ -1,7 +1,7 @@
 package session
 
 import (
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/config"
 	"github.com/gorilla/sessions"
 )
 

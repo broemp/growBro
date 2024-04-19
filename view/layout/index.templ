@@ -1,12 +1,12 @@
 package layout
 
-import "github.com/broemp/cannaBro/view/components"
+import "github.com/broemp/growBro/view/components"
 
 templ Index(nav bool) {
 	<!DOCTYPE html>
 	<html lang="en" data-theme="lemonade">
 		<head>
-			<title>CannaBro</title>
+			<title>GrowBro</title>
 			<link rel="icon" href="/public/favicon.svg"/>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,14 +16,10 @@ templ Index(nav bool) {
 		<body class="antialiased">
 			if nav {
 				@components.Navigation() {
-					<div class="children">
-						{ children... }
-					</div>
+					{ children... }
 				}
 			} else {
-				<div class="children">
-					{ children... }
-				</div>
+				{ children... }
 			}
 		</body>
 	</html>

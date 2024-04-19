@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/broemp/cannaBro/auth/authProvider"
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/auth/authProvider"
+	"github.com/broemp/growBro/config"
 	"go.uber.org/zap"
 )
 

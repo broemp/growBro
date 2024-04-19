@@ -19,6 +19,9 @@ type env struct {
 	SessionEncryptionKey     string `mapstructure:"SESSION_ENCRYPTION_KEY"`
 	SessionMaxCookieAgeInMin int    `mapstructure:"SESSION_MAX_COOKIE_AGE_IN_MIN"`
 
+	// Video
+	VideoStreamPort int `mapstructure:"VIDEOSTREAM_PORT"`
+
 	// DB
 	// Postgres
 	DBHost     string `mapstructure:"DB_HOST"`

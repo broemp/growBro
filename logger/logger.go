@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/config"
 	"github.com/go-chi/chi/v5/middleware"
 	"go.uber.org/zap"
 )
