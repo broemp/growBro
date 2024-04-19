@@ -7,3 +7,4 @@ tmp
 test_config
 db/postgres/sqlc
 public
+growBro

@@ -1,9 +1,11 @@
 package home
 
 import "github.com/broemp/growBro/view/layout"
+import "github.com/broemp/growBro/view/components"
 
 templ Index() {
 	@layout.Index(true) {
 		<div>Home</div>
+		@components.Videostream()
 	}
 }

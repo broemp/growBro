@@ -9,7 +9,6 @@ import (
 	"github.com/broemp/growBro/logger"
 	"github.com/broemp/growBro/server"
 	"github.com/broemp/growBro/session"
-	"github.com/broemp/growBro/videostream"
 )
 
 //go:embed public
@@ -25,6 +24,5 @@ func main() {
 	db.Init(schemaFS)
 	auth.Init()
 	println("Running")
-	go videostream.Init()
 	server.Start(publicFS)
 }

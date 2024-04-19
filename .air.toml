@@ -2,8 +2,8 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-bin = "./tmp/cannaBro"
-cmd = "sqlc generate && go build -o ./tmp/cannaBro ."
+bin = "./tmp/growBro"
+cmd = "sqlc generate && go build -o ./tmp/growBro ."
 
 delay = 1000
 exclude_dir = [

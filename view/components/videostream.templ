@@ -1,0 +1,16 @@
+package components
+
+import "github.com/broemp/growBro/config"
+
+templ Videostream() {
+	<div class="video">
+		<iframe
+			id="inlineFrameExample"
+			title="Inline Frame Example"
+			width="960"
+			height="540"
+			class="border-2 border-green-500 rounded-xl"
+			src={ config.Env.VideoStreamURL }
+		></iframe>
+	</div>
+}

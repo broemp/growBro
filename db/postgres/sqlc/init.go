@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/broemp/cannaBro/config"
+	"github.com/broemp/growBro/config"
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/pgx/v5"
 	"github.com/golang-migrate/migrate/v4/source/iofs"

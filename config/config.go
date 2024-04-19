@@ -20,7 +20,7 @@ type env struct {
 	SessionMaxCookieAgeInMin int    `mapstructure:"SESSION_MAX_COOKIE_AGE_IN_MIN"`
 
 	// Video
-	VideoStreamPort int `mapstructure:"VIDEOSTREAM_PORT"`
+	VideoStreamURL string `mapstructure:"VIDEOSTREAM_URL"`
 
 	// DB
 	// Postgres
