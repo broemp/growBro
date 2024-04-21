@@ -30,7 +30,7 @@ apt-get install -yq  --no-install-recommends \
   nodejs \
   npm
 npm install
-EOF 
+EOF
 
 # Copy Go mod 
 COPY go.mod go.sum ./
