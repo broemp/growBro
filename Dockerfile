@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.22.1 as BUILDER
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.22.2 as BUILDER
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -18,16 +18,19 @@ WORKDIR /app
 
 # Setup Env
 RUN <<EOF
-apt-get update
-apt-get install -y nodejs npm
-npm install -g pnpm
 go install github.com/a-h/templ/cmd/templ@latest
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 EOF
 
 # Setup Tailwindcss
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
+COPY package.json ./
+RUN <<EOF
+apt-get update
+apt-get install -yq  --no-install-recommends \
+  nodejs \
+  npm
+npm install
+EOF 
 
 # Copy Go mod 
 COPY go.mod go.sum ./
@@ -43,7 +46,7 @@ COPY . .
 RUN <<EOF
 templ generate view
 sqlc generate
-pnpx tailwindcss  -i view/css/input.css -o public/styles.css --minify
+npx tailwindcss  -i view/css/input.css -o public/styles.css --minify
 EOF
 
 RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
