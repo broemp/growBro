@@ -13,7 +13,7 @@ install:
 build:
 	tailwindcss -i view/css/input.css -o public/styles.css 
 	@templ generate view
-	@go build -o bin/RedCard cmd/RedCard.go 
+	@go build -o bin/GrowBro .
 
 templ:
 	@templ generate -watch -proxy=http://localhost:3000
