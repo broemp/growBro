@@ -1,9 +1,32 @@
+FROM golang:1.22.2 as GENERATOR
+
+WORKDIR /app
+
+COPY . .
+
+RUN <<EOF
+go install github.com/a-h/templ/cmd/templ@latest
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+templ generate view
+sqlc generate
+EOF
+
+FROM node:21 as CSS
+
+WORKDIR /app
+
+COPY package.json package.json
+RUN npm install
+
+COPY ./view/css/input.css ./view/css/input.css
+RUN npx tailwindcss  -i view/css/input.css -o public/styles.css --minify
+
 FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.22.2 as BUILDER
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 ARG TARGETOS
-ARG TARGETARCH
+ARG TARGETARCHinput.css
 
 ARG Version
 ARG GitCommit
@@ -16,22 +39,6 @@ ARG GitCommit
 
 WORKDIR /app
 
-# Setup Env
-RUN <<EOF
-go install github.com/a-h/templ/cmd/templ@latest
-go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
-EOF
-
-# Setup Tailwindcss
-COPY package.json ./
-RUN <<EOF
-apt-get update
-apt-get install -yq  --no-install-recommends \
-  nodejs \
-  npm
-npm install
-EOF
-
 # Copy Go mod 
 COPY go.mod go.sum ./
 RUN <<EOF
@@ -39,15 +46,9 @@ go mod tidy
 go mod download
 EOF
 
-# Copy remaining files
-COPY . .
-
 # Setup Project
-RUN <<EOF
-templ generate view
-sqlc generate
-npx tailwindcss  -i view/css/input.css -o public/styles.css --minify
-EOF
+COPY --from=GENERATOR /app /app
+COPY --from=CSS /app/public/styles.css ./public/
 
 RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
   go build -ldflags "-s -w -X github.com/broemp/growbro/version.Release=${Version} -X github.com/broemp/growbro/version.SHA=${GitCommit}" \
