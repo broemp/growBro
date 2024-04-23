@@ -1,0 +1,34 @@
+before:
+  hooks:
+    - go mod download
+builds:
+  - binary: go_multiarch
+    id: go_multiarch
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+  - binary: go_multiarch_mac
+    id: go_multiarch_mac
+    goos:
+      - darwin
+    goarch:
+      - amd64
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+nfpms:
+  - maintainer: Broemp <broemp@broemp.de>
+    description: Check your grows
+    homepage: https://github.com/broemp
+    formats:
+      - deb
+      - apk

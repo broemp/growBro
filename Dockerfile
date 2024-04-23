@@ -40,3 +40,4 @@ WORKDIR /app
 COPY --from=BUILDER /app/growbro /app/growbro
 
 CMD [ "./growbro" ]
+EXPOSE 3000
