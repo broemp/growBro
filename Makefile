@@ -22,4 +22,4 @@ tailwind:
 	@tailwindcss -i view/css/input.css -o public/styles.css --watch
 
 db:
-	docker rm -f cannaBro_Postgres && docker run -p 127.0.0.1:5433:5432 -e POSTGRES_USER=cannaBro -e POSTGRES_PASSWORD=cannaBro -e POSTGRES_DB=cannaBro --name cannaBro_Postgres -d postgres
+	docker rm -f growBro_Postgres && docker run -p 127.0.0.1:5433:5432 -e POSTGRES_USER=growBro -e POSTGRES_PASSWORD=growBro -e POSTGRES_DB=growBro --name growBro_Postgres -d postgres

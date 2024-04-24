@@ -1,3 +1,4 @@
+-- +goose Up
 CREATE TABLE "accessToken" (
   "token" text PRIMARY KEY,
   "valid_till" timestamp NOT NULL,

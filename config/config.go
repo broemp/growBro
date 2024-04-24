@@ -10,6 +10,7 @@ type env struct {
 	URL        string `mapstructure:"APP_URL"`
 	Port       uint16 `mapstructure:"APP_PORT"`
 	ConfigPath string `mapstructure:"CONFIG_PATH"`
+	SchemaPath string `mapstructure:"SCHEMA_PATH"`
 
 	// Logger
 	LogLevel string `mapstructure:"LOG_LEVEL"`

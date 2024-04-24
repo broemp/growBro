@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"database/sql"
 	"embed"
 	"fmt"
 	"log"
@@ -10,10 +11,10 @@ import (
 	"time"
 
 	"github.com/broemp/growBro/config"
-	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/pgx/v5"
-	"github.com/golang-migrate/migrate/v4/source/iofs"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v5/stdlib"
+	"github.com/pressly/goose/v3"
 	"go.uber.org/zap"
 )
 
@@ -61,6 +62,7 @@ func ConnectDatabase(
 		time.Sleep(time.Duration(timeout) * time.Second)
 		i++
 	}
+
 	return connPool
 }
 
@@ -77,41 +79,27 @@ func Init(fs embed.FS) {
 		sslmode = "require"
 	}
 
-	err := migrateDB(fs)
+	conn := ConnectDatabase(dbname, user, pass, host, sslmode, context.Background())
+	stdDB := stdlib.OpenDBFromPool(conn)
+	err := migrateDB(fs, stdDB)
 	if err != nil {
 		zap.L().Info("Migrate DB:", zap.Error(err))
 	}
-	conn := ConnectDatabase(dbname, user, pass, host, sslmode, context.Background())
 
 	Store = NewStore(conn)
 	log.Println("Connected to DB")
 	zap.L().Info("connected to db")
 }
 
-func migrateDB(fs embed.FS) error {
-	var (
-		host    = config.Env.DBHost
-		user    = config.Env.DBUser
-		pass    = config.Env.DBPassword
-		dbname  = config.Env.DBName
-		sslmode = "disable"
-	)
+func migrateDB(fs embed.FS, db *sql.DB) error {
+	goose.SetBaseFS(fs)
 
-	if config.Env.DBSSL {
-		sslmode = "require"
+	if err := goose.SetDialect("postgres"); err != nil {
+		panic(err)
 	}
 
-	d, err := iofs.New(fs, "db/postgres/schema")
-	if err != nil {
-		zap.L().Error("could not create iofs", zap.Error(err))
-	}
-	m, err := migrate.NewWithSourceInstance("iofs", d, fmt.Sprintf("pgx5://%s:%s@%s/%s?sslmode=%s", user, pass, host, dbname, sslmode))
-	if err != nil {
-		zap.L().Error("could not create new migration", zap.Error(err))
-	}
-	err = m.Up()
-	if err != nil {
-		zap.L().Error("could not upgrade database", zap.Error(err))
+	if err := goose.Up(db, "db/postgres/schema"); err != nil {
+		panic(err)
 	}
 
 	return nil
