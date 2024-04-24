@@ -31,7 +31,7 @@ RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
   -o growbro .
 
 #FROM busybox:glibc
-FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine:latest
+FROM --platform=${BUILDPLATFORM:-linux/amd64} busybox:latest
 
 WORKDIR /app
 COPY --from=BUILDER /app/growbro /app/growbro
