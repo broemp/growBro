@@ -17,14 +17,11 @@ ARG GitCommit
 WORKDIR /app
 
 # Copy Go mod 
-COPY go.mod go.sum ./
+COPY . .
 RUN <<EOF
 go mod tidy
 go mod download
 EOF
-
-# Setup Project
-COPY . .
 
 RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
   go build -ldflags "-s -w -X github.com/broemp/growbro/version.Release=${Version} -X github.com/broemp/growbro/version.SHA=${GitCommit}" \
