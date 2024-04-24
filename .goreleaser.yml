@@ -12,10 +12,7 @@ builds:
       - arm64
 dockers:
   - image_templates:
-      - "ghcr.io/broemp/growbro:latest-arm64v8"
-      - "ghcr.io/broemp/growbro:{{ .Tag }}-arm64v8"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-arm64v8"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-arm64v8"
+      - "ghcr.io/broemp/growbro:{{ .Version }}-arm64v8"
     goarch: arm64
     dockerfile: Dockerfile
     use: buildx
@@ -25,10 +22,7 @@ dockers:
       - --label=org.opencontainers.image.description=growbro
       - --label=org.opencontainers.image.version={{ .Version }}
   - image_templates:
-      - "ghcr.io/broemp/growbro:latest-amd64"
-      - "ghcr.io/broemp/growbro:{{ .Tag }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-amd64"
+      - "ghcr.io/broemp/growbro:{{ .Version }}-amd64"
     goarch: amd64
     dockerfile: Dockerfile
     use: buildx
@@ -42,15 +36,7 @@ docker_manifests:
     image_templates:
       - ghcr.io/broemp/growbro:{{ .Version }}-amd64
       - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-arm64v8"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-arm64v8"
   - name_template: ghcr.io/broemp/growbro:latest
     image_templates:
       - ghcr.io/broemp/growbro:{{ .Version }}-amd64
       - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-amd64"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}-arm64v8"
-      - "ghcr.io/broemp/growbro:v{{ .Major }}.{{ .Minor }}-arm64v8"
