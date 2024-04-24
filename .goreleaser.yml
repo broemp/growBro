@@ -10,33 +10,44 @@ builds:
     goarch:
       - amd64
       - arm64
-dockers:
-  - image_templates:
-      - "ghcr.io/broemp/growbro:{{ .Version }}-arm64v8"
-    goarch: arm64
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - --platform=linux/arm64/v8
-      - --label=org.opencontainers.image.title=growbro
-      - --label=org.opencontainers.image.description=growbro
-      - --label=org.opencontainers.image.version={{ .Version }}
-  - image_templates:
-      - "ghcr.io/broemp/growbro:{{ .Version }}-amd64"
-    goarch: amd64
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - --platform=linux/amd64
-      - --label=org.opencontainers.image.title=growbro
-      - --label=org.opencontainers.image.description=growbro
-      - --label=org.opencontainers.image.version={{ .Version }}
-docker_manifests:
-  - name_template: "ghcr.io/broemp/growbro:{{ .Version }}"
-    image_templates:
-      - ghcr.io/broemp/growbro:{{ .Version }}-amd64
-      - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
-  - name_template: ghcr.io/broemp/growbro:latest
-    image_templates:
-      - ghcr.io/broemp/growbro:{{ .Version }}-amd64
-      - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
+# dockers:
+#   - image_templates:
+#       - "ghcr.io/broemp/growbro:{{ .Version }}-arm64v8"
+#     goarch: arm64
+#     dockerfile: Dockerfile
+#     use: buildx
+#     build_flag_templates:
+#       - --platform=linux/arm64/v8
+#       - --label=org.opencontainers.image.title=growbro
+#       - --label=org.opencontainers.image.description=growbro
+#       - --label=org.opencontainers.image.version={{ .Version }}
+#   - image_templates:
+#       - "ghcr.io/broemp/growbro:{{ .Version }}-amd64"
+#     goarch: amd64
+#     dockerfile: Dockerfile
+#     use: buildx
+#     build_flag_templates:
+#       - --platform=linux/amd64
+#       - --label=org.opencontainers.image.title=growbro
+#       - --label=org.opencontainers.image.description=growbro
+#       - --label=org.opencontainers.image.version={{ .Version }}
+# docker_manifests:
+#   - name_template: "ghcr.io/broemp/growbro:{{ .Version }}"
+#     image_templates:
+#       - ghcr.io/broemp/growbro:{{ .Version }}-amd64
+#       - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
+#   - name_template: ghcr.io/broemp/growbro:latest
+#     image_templates:
+#       - ghcr.io/broemp/growbro:{{ .Version }}-amd64
+#       - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
+kos:
+  - id: kos
+    base_image: alpine
+    repository: ghcr.io/broemp/growbro
+    tags:
+      - latest
+      - "{{.Version}}"
+      - "{{if not .Prerelease}}stable{{end}}"
+    platforms:
+      - linux/amd64
+      - linux/arm64
