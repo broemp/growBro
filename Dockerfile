@@ -30,8 +30,9 @@ RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
   go build -ldflags "-s -w -X github.com/broemp/growbro/version.Release=${Version} -X github.com/broemp/growbro/version.SHA=${GitCommit}" \
   -o growbro .
 
-#FROM busybox:glibc
 FROM --platform=${BUILDPLATFORM:-linux/amd64} busybox:latest
+
+ARG TARGETARCH
 
 WORKDIR /app
 COPY --from=BUILDER /app/growbro /app/growbro
