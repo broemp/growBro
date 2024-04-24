@@ -31,10 +31,7 @@ RUN CGO_ENABLED=${CGO_ENABLED} GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
   -o growbro .
 
 #FROM busybox:glibc
-FROM --platform=${BUILDPLATFORM:-linux/amd64} gcr.io/distroless/static:nonroot
-
-LABEL org.opencontainers.image.source=https://github.com/inlets/inlets-operator
-USER nonroot:nonroot
+FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine:latest
 
 WORKDIR /app
 COPY --from=BUILDER /app/growbro /app/growbro
