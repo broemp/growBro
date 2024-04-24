@@ -41,8 +41,7 @@ builds:
 #       - ghcr.io/broemp/growbro:{{ .Version }}-amd64
 #       - ghcr.io/broemp/growbro:{{ .Version }}-arm64v8
 kos:
-  - id: kos
-    base_image: alpine
+  - base_image: alpine
     repository: ghcr.io/broemp/growbro
     tags:
       - latest
