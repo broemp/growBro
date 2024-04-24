@@ -1,5 +1,5 @@
 # Dockerfile
-FROM alpine:latest
+FROM busybox:glibc
 WORKDIR /app
 COPY growbro \
   growbro
