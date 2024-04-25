@@ -44,6 +44,8 @@ func ConnectDatabase(
 		sslmode,
 	)
 
+	fmt.Println(uri)
+
 	pgxConfig, err := pgxpool.ParseConfig(uri)
 	if err != nil {
 		panic(err)
