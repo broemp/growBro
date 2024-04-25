@@ -12,6 +12,7 @@ builds:
     goos:
       - linux
       - windows
+    flags: -tags=viper_bind_struct
 
 archives:
   - format: tar.gz
