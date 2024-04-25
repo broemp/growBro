@@ -9,3 +9,5 @@ growBro
 bin/RedCard
 bin
 dist
+
+dist/

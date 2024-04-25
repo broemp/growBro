@@ -1,7 +1,5 @@
-# Dockerfile
-FROM busybox:glibc
-WORKDIR /app
-COPY growbro \
-  growbro
-ENTRYPOINT ["growbro"]
+FROM ubuntu
+WORKDIR /app/
+COPY growBro /app/growBro
+ENTRYPOINT ["/app/growBro"]
 EXPOSE 3000
