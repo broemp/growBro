@@ -1,5 +1,5 @@
 FROM ubuntu
 WORKDIR /app/
-COPY growbro /app/growbro
-ENTRYPOINT ["/app/growbro"]
+COPY growBro /app/growBro
+ENTRYPOINT ["/app/growBro"]
 EXPOSE 3000
