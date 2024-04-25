@@ -30,15 +30,15 @@ archives:
 
 dockers:
   - image_templates:
-      - "broemp/growbro:{{ .Tag }}-amd64"
-      - "broemp/growbro:latest-amd64"
+      - "ghcr.io/broemp/growbro:{{ .Tag }}-amd64"
+      - "ghcr.io/broemp/growbro:latest-amd64"
     use: buildx
     build_flag_templates:
       - "--pull"
       - "--platform=linux/amd64"
   - image_templates:
-      - "broemp/growbro:{{ .Tag }}-arm64"
-      - "broemp/growbro:latest-arm64"
+      - "ghcr.io/broemp/growbro:{{ .Tag }}-arm64"
+      - "ghcr.io/broemp/growbro:latest-arm64"
     use: buildx
     build_flag_templates:
       - "--pull"
@@ -47,14 +47,14 @@ dockers:
 
 # .goreleaser.yaml
 docker_manifests:
-  - name_template: "broemp/growbro:{{ .Tag }}"
+  - name_template: "ghcr.io/broemp/growbro:{{ .Tag }}"
     image_templates:
-      - "broemp/growbro:{{ .Tag }}-amd64"
-      - "broemp/growbro:{{ .Tag }}-arm64"
-  - name_template: "broemp/growbro:latest"
+      - "ghcr.io/broemp/growbro:{{ .Tag }}-amd64"
+      - "ghcr.io/broemp/growbro:{{ .Tag }}-arm64"
+  - name_template: "ghcr.io/broemp/growbro:latest"
     image_templates:
-      - "broemp/growbro:latest-amd64"
-      - "broemp/growbro:latest-arm64"
+      - "ghcr.io/broemp/growbro:latest-amd64"
+      - "ghcr.io/broemp/growbro:latest-arm64"
 
 changelog:
   sort: asc
